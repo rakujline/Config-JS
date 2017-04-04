@@ -1,0 +1,15 @@
+{
+    "title": "Configuration 2",
+    "configs":{
+        
+        "Preference 1":{
+            "category":"design",
+            "place":"London"
+        },
+
+        "Preference 2":{
+            "category":"art",
+            "place":"Palis"
+        }
+    }
+}

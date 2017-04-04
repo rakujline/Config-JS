@@ -1,0 +1,20 @@
+{
+    "title": "Configuration 1",
+    "configs":{
+
+        "Preference 1":{
+            "category":"theater",
+            "place":"New York"
+        },
+
+        "Preference 2":{
+            "category":"food",
+            "place":"Tokyo"
+        },
+        
+        "Preference 3":{
+            "category":"vacation",
+            "place":"Hawaii"
+        }
+    }
+}
