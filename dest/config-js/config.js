@@ -38,7 +38,9 @@ Configuration.prototype.promiseLoadTemplate = function(json_uri){
 
                 $(tag_configs).append('<option>' + o + '</option>');
             }
-            
+
+            // set data of default selected option
+            this.selected_data = this.whole_data.configs[$(tag_configs + ' option:selected').text()];
             // set handler triggered by changing select option
             $(tag_configs).change(
                 ()=>{
