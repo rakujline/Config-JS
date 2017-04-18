@@ -1,12 +1,18 @@
 let CONFIG_JS = {
-    path: null
+    path: null,
+    notice: true // GUI上で設定が選び直される度に、選ばれた設定の値をコンソール出力する。
 };
 
-let Configuration = function(id){
+let Configuration = function(id, json_uri = null){
     this.id = id;
     this.selected_data;
     this.whole_data;
     this.template_select_uri = 'select.html';
+
+    // コンストラクタ呼び出し時に、jsonファイルが指定されていれば、読み込みを始める
+    if(json_uri){
+        this.promiseLoadTemplate(json_uri);
+    }
 };
 
 Configuration.prototype.promiseLoadTemplate = function(json_uri){
@@ -19,7 +25,7 @@ Configuration.prototype.promiseLoadTemplate = function(json_uri){
     .then(
         () => { return $.getJSON( json_uri ); }
     )
-    .then(
+    .done(
         
         (data) => {
             
@@ -45,15 +51,16 @@ Configuration.prototype.promiseLoadTemplate = function(json_uri){
             $(tag_configs).change(
                 ()=>{
                     this.selected_data = this.whole_data.configs[$(tag_configs + ' option:selected').text()];
-                });
+                    if( CONFIG_JS.notice === true ) console.log(tag_title,this.selected_data);
+                }
+            );
                 
-        },
-        
-        // on error
+        }
+    )
+    .fail(
         (p1,p2,p3)=>{
             console.log(p3.message);
         }
-        
     );
 
     return dfd.promise();
