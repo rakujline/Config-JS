@@ -45,15 +45,15 @@ Configuration.prototype.promiseLoadTemplate = function(json_uri){
                 $(tag_configs).append('<option>' + o + '</option>');
             }
 
-            // set data of default selected option
-            this.selected_data = this.whole_data.configs[$(tag_configs + ' option:selected').text()];
             // set handler triggered by changing select option
-            $(tag_configs).change(
-                ()=>{
-                    this.selected_data = this.whole_data.configs[$(tag_configs + ' option:selected').text()];
-                    if( CONFIG_JS.notice === true ) console.log(tag_title,this.selected_data);
-                }
-            );
+            let onChange = ()=>{
+                // set data of default selected option
+                this.selected_data = this.whole_data.configs[$(tag_configs + ' option:selected').text()];
+                if( CONFIG_JS.notice === true ) console.log(tag_title,this.selected_data);
+            };
+            // Initially call once
+            onChange();
+            $(tag_configs).change(onChange);
                 
         }
     )
