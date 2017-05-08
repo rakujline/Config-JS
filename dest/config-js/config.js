@@ -23,7 +23,7 @@ Configuration.prototype.promiseLoadTemplate = function(json_uri){
     
     dfd
     .then(
-        () => { return $.getJSON( json_uri ); }
+        () => { return $.getJSON( json_uri + '?' + Date.now() ); }
     )
     .done(
         
